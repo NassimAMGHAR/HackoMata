@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    private const float offset = 1f;
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
-    public GameObject bullet; 
+    public GameObject bullet;
+    public Transform shootPos;
+
+    private void Update()
+    {
+        Shoot();
+    }
 
     void FixedUpdate()
     {
@@ -24,17 +31,15 @@ public class PlayerScript : MonoBehaviour
         transform.Translate(0, 0, translation);
 
         // Rotate around our y-axis
-        transform.Rotate(0, rotation, 0);
-
-        Shoot();
+        transform.Rotate(0, rotation, 0);      
     }
 
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-
-           GameObject created = Instantiate(bullet, transform.position, transform.rotation);
+            Vector3 position = shootPos.position;
+           GameObject created = Instantiate(bullet, position, transform.rotation);
            
         }
     }
