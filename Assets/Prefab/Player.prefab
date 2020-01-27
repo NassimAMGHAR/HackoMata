@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2ed689051294d4a9fe42ed634dc1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   rotationSpeed: 100
   bullet: {fileID: 1080355754177228262, guid: 856efe58960cac64c982f800a53ce604, type: 3}
   shootPos: {fileID: 5543501764131782922}
