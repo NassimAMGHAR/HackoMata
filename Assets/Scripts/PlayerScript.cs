@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
     private const float offset = 1f;
-    public float speed = 10.0f;
+    public float speed = 15.0f;
     public float rotationSpeed = 100.0f;
     public GameObject bullet;
     public Transform shootPos;
+    public float life = 100f;
+    public float hitPoint = 10f;
+    public Text healthText;
+
+    private const string BULLET_NAME = "Bullet";
 
     private void Update()
     {
@@ -32,6 +38,26 @@ public class PlayerScript : MonoBehaviour
 
         // Rotate around our y-axis
         transform.Rotate(0, rotation, 0);      
+    }
+
+    //Detect collisions between the GameObjects with Colliders attached
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.collider.tag);
+        //Check for a match with the specific tag on any GameObject that collides with your GameObject
+        if (collision.gameObject.tag == BULLET_NAME)
+        {
+            if(life > 0)
+            {
+                life -= hitPoint;
+                healthText.text = "Health: "+life;
+            }
+            else
+            {
+                //If the GameObject has the same tag as specified, output this message in the console        
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void Shoot()

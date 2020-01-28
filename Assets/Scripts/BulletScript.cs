@@ -35,8 +35,7 @@ public class BulletScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != GROUND_TAG)
-        {
-            
+        {            
             Destroy(gameObject);
         }
     }
