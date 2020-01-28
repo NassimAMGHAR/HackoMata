@@ -37,7 +37,7 @@ public class PlayerScript : MonoBehaviour
         transform.Translate(0, 0, translation);
 
         // Rotate around our y-axis
-        transform.Rotate(0, rotation, 0);      
+        transform.Rotate(0, rotation, 0);
     }
 
     //Detect collisions between the GameObjects with Colliders attached
@@ -47,10 +47,10 @@ public class PlayerScript : MonoBehaviour
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
         if (collision.gameObject.tag == BULLET_NAME)
         {
-            if(life > 0)
+            if (life > 0)
             {
                 life -= hitPoint;
-                healthText.text = "Health: "+life;
+                healthText.text = "Health: " + life;
             }
             else
             {
@@ -62,11 +62,19 @@ public class PlayerScript : MonoBehaviour
 
     private void Shoot()
     {
+        var weapon = GameObject.Find("Weapon");
+        var rotor = weapon.GetComponent<RotatorScript>();
+
         if (Input.GetKeyDown(KeyCode.Space))
-        {
+        {           
+            if (rotor!= null && rotor.rotationSpeed < RotatorScript.MAX_ROTATION_SPEED)
+            {
+                rotor.rotationSpeed += 10f;
+            }
+
             Vector3 position = shootPos.position;
-           GameObject created = Instantiate(bullet, position, transform.rotation);
-           
-        }
+            GameObject created = Instantiate(bullet, position, transform.rotation);
+
+        } 
     }
 }

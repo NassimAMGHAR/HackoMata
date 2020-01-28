@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     private const string BULLET_NAME = "Bullet";
 
-    public GameObject player;
+    private GameObject player;
     public Transform shootPos;
     public GameObject bullet;
 
@@ -19,10 +19,14 @@ public class EnemyScript : MonoBehaviour
 
     private float nextFire = 0.0F;
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
 
     // LateUpdate is called after Update each frame
     void Update()
-    {       
+    {
         Fire();
     }
 
@@ -66,11 +70,11 @@ public class EnemyScript : MonoBehaviour
 
     private void Fire()
     {
-        if(InRange() && Time.time > nextFire)
+        if (InRange() && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            GameObject created = Instantiate(bullet, shootPos.position, transform.rotation);       
-        }        
+            GameObject created = Instantiate(bullet, shootPos.position, transform.rotation);
+        }
     }
 
     private bool InRange()

@@ -9,6 +9,7 @@ TagManager:
   - Bloc
   - Ground
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX

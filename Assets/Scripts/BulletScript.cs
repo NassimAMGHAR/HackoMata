@@ -19,15 +19,15 @@ public class BulletScript : MonoBehaviour
         // Get the horizontal and vertical axis.
         // By default they are mapped to the arrow keys.
         // The value is in the range -1 to 1
-        float translation =  speed * Time.deltaTime;
+        float translation = speed * Time.deltaTime;
 
 
         // Move translation along the object's z-axis
         transform.Translate(0, 0, translation);
-      /*  if(speed * Time.deltaTime > 10)
-        {
-           speed -= deselerate;
-        }*/
+        /*  if(speed * Time.deltaTime > 10)
+          {
+             speed -= deselerate;
+          }*/
 
     }
 
@@ -35,7 +35,7 @@ public class BulletScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != GROUND_TAG)
-        {            
+        {
             Destroy(gameObject);
         }
     }
